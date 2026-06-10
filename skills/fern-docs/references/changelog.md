@@ -77,8 +77,8 @@ The `href` is a docs **URL path** built from `docs.yml`, not a file path:
 <!-- CORRECT: built from docs.yml -->     href="/docs/customization/search"
 ```
 
-See the **Links** section of `SKILL.md` for how to construct the path (slugs,
-`skip-slug`, frontmatter slugs); when unsure, query the Fern MCP server.
+See the **Links** section of `SKILL.md` for how to construct the path (base
+path, product slug, frontmatter slugs, `skip-slug`) from this repo's `docs.yml`.
 
 ## Voice
 
