@@ -61,29 +61,44 @@ Dry and direct. State requirements and behavior plainly.
 
 ## Links
 
-Internal links are **URL paths built from `docs.yml`**, not file paths on disk or
-relative paths. Nearly every edit touches a link, so get this right every time.
+Internal links are URL paths derived from **this repo's own `docs.yml` and page
+frontmatter** — not file paths on disk or relative paths. Nearly every edit
+touches a link, so get this right every time.
 
-To build an internal link:
+A page URL is `<base-path>/<product-slug>/<rest>`:
 
-1. Start from your instance's **base path** — the prefix in your docs URL (e.g.
-   `/docs` or `/learn`).
-2. **Walk `docs.yml`** from the product or tab down through the section to the
-   page. Each level (product, version, tab, section, folder, page) contributes
-   one slug:
+- **Base path** — the prefix in your docs URL (e.g. `/learn`, `/docs`; may be empty).
+- **Product slug** — the product's `slug` in `fern/docs.yml`. Omitted for a
+  product with no `slug:` (such as a default single Home product).
+- **`<rest>`** — found by step 1 or step 2 below.
+
+To find `<rest>`:
+
+1. **Open the target page and check its frontmatter for `slug:`.** A frontmatter
+   slug is **absolute within the product**: it *is* `<rest>` on its own, and it
+   replaces the entire section/folder hierarchy. The section's slug does not
+   appear. Do not walk the navigation.
+2. **Otherwise, walk `docs.yml`** within the product, from section through any
+   folders to the page. Each level contributes one slug:
    - Its explicit `slug:` if set.
    - Otherwise auto-derived from the display name: lowercased, spaces to
      hyphens, special characters stripped (so `v3 (Latest)` becomes
      `v-3-latest`). Auto-derivation isn't always obvious — verify, don't assume.
    - In folder-based navigation, a page's slug comes from its **filename**, not
      a display name (`quick-start.mdx` to `quick-start`).
-3. **Skip any level with `skip-slug: true`** (supported on sections, folders,
-   and tabs) — it contributes no segment.
+   - **Omit any level with `skip-slug: true`** — it contributes no segment.
 
-A page's frontmatter `slug:` is **absolute**: it sets the full path from the
-docs root and ignores the navigation hierarchy. Section slugs also frequently
-differ from folder names, so don't guess the URL from the directory layout. When
-unsure of a path, query the Fern MCP server.
+Example — page `./pages/ai/overview.mdx` under section "AI features", in product
+`docs`, base path `/learn`:
+
+- with frontmatter `slug: ai-ai` → `/learn/docs/ai-ai` (the `ai-features`
+  section slug is dropped)
+- with no frontmatter slug → `/learn/docs/ai-features/overview` (section
+  auto-slug `ai-features` + page auto-slug `overview`)
+
+Section slugs frequently differ from folder names, so never guess the URL from
+the directory layout. If you can't resolve a path from `docs.yml` and the page's
+frontmatter, say so rather than guessing.
 
 **Anchors** append `#heading`, and only resolve for real `##`/`###` Markdown
 headings — not for JSX title props like `<Step title>`, `<Tab title>`,
