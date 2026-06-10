@@ -68,11 +68,8 @@ section from the search bar, and results are limited to pages under it.
 
 ## The docs-link Button
 
-The `href` is a docs **URL path**, not a file path. Build it from `docs.yml`:
-`<base-path>/<section-slug>/<page-slug>`. The base path is your instance's prefix
-(e.g. `/docs`). Walk the nav down to the target page, using each section's
-explicit `slug:` or its auto-derived (lowercased, hyphenated) name, skipping any
-`skip-slug: true`. Page frontmatter `slug:` wins over the nav YML.
+The `href` is a docs **URL path** built from `docs.yml`, not a file path:
+`<base-path>/<section-slug>/<page-slug>`.
 
 ```mdx
 <!-- WRONG: file path on disk -->         href="/changelog/../pages/search/configuration"
@@ -80,9 +77,8 @@ explicit `slug:` or its auto-derived (lowercased, hyphenated) name, skipping any
 <!-- CORRECT: built from docs.yml -->     href="/docs/customization/search"
 ```
 
-External links (`https://...`) are fine as-is. For the full URL-construction
-rules (skip-slug, anchors, snippet includes, per-product slugs), see
-`references/navigation.md`.
+See the **Links** section of `SKILL.md` for how to construct the path (slugs,
+`skip-slug`, frontmatter slugs); when unsure, query the Fern MCP server.
 
 ## Voice
 
