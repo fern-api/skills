@@ -17,6 +17,8 @@ Official [Agent Skills](https://www.skills.sh) for building with
 [Fern](https://buildwithfern.com). These teach coding agents — Claude Code,
 Cursor, Codex, Copilot, and others — how to work well in a Fern repository.
 
+</div>
+
 ## Install
 
 ```bash
