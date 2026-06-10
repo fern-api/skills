@@ -107,3 +107,38 @@ headings — not for JSX title props like `<Step title>`, `<Tab title>`,
 **Not internal links** (leave as-is): external `https://` URLs, image paths
 (`./images/...`), snippet includes (`<Markdown src="/snippets/..." />`), and
 same-page anchors (`#section`).
+
+## Cross-referencing
+
+When you document new functionality — a new page, or new behavior on an existing
+one — related pages usually need a pointer to it, or the new content is hard to
+find from where readers actually start. This applies to small edits too, not
+just new pages.
+
+- **One canonical home.** The full explanation lives on one page; every other
+  page that touches the topic links to it instead of restating it. If you're
+  copying more than a sentence or two onto another page, it belongs on the
+  canonical page.
+- **Find the targets.** Grep the docs for the feature name and one or two related
+  keywords, then read each hit and decide whether a pointer is warranted:
+
+  ```bash
+  grep -rln "<feature>\|<keyword>" fern --include="*.mdx"
+  ```
+
+  Common targets: pages for behavior the feature affects, adjacent feature pages,
+  and overview or landing pages.
+- **Use the lightest form that works:** an inline link inside an existing
+  sentence, then a `<Note>` for a secondary aside, then a new `##` section, then
+  a new page. Inline links and Notes add no maintenance surface; new pages and
+  sections do.
+- **Phrase inline links naturally — never "See [page]."** Put the link on a noun
+  phrase already in the sentence, not a tacked-on pointer sentence. Don't wrap a
+  lone link in a `<Tip>` whose only job is to host it.
+  - Good: "Each request counts against your [rate limit](...), which resets hourly."
+  - Bad: "Requests are rate limited. See the [rate limits reference](...) for details."
+  - Bad: a standalone `<Tip>` containing only "For more, see [rate limits](...)."
+- **Frame by function, not plumbing.** Contrast what each feature does ("X
+  decides A; Y decides B"), not that they share a config key or sit in the same
+  directory. If the only thing linking two features is the same YAML key, it's
+  not worth a cross-reference.
