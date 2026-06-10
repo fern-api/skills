@@ -1,4 +1,17 @@
-# Fern skills
+<br/>
+
+<div align="center">
+  <a href="https://www.buildwithfern.com/?utm_source=github&utm_medium=readme&utm_campaign=fern&utm_content=logo">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="/fern/docs/assets/fern-logo-white.svg">
+      <source media="(prefers-color-scheme: light)" srcset="/fern/docs/assets/fern-logo-primary.svg">
+      <img alt="logo" src="/fern/docs/assets/fern-logo-primary.svg" height="50" align="center">
+    </picture>
+  </a>
+  
+<br/>
+  
+  # Fern skills
 
 Official [Agent Skills](https://www.skills.sh) for building with
 [Fern](https://buildwithfern.com). These teach coding agents — Claude Code,
