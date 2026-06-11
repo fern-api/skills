@@ -37,6 +37,10 @@ Fern's configuration evolves. Look things up rather than guessing.
 
 ## Core principles
 
+- **Defer to the repo's own conventions.** When a docs repo has an established
+  pattern, voice, or structure — a `CLAUDE.md`, a style guide, or just the
+  consistent practice of surrounding pages — follow it over the guidance here.
+  This skill is the default, not an override.
 - **Write what the reader needs to succeed — no more.** Every sentence earns its place.
 - **Prefer editing over creating.** Search the repo for a page that already
   covers the topic and update it instead of adding a duplicate.
@@ -47,19 +51,6 @@ Fern's configuration evolves. Look things up rather than guessing.
   (MCP server or docs) or say so. Don't invent frontmatter or YAML fields.
 - **Cross-reference.** When you mention a concept documented elsewhere, link to it
   so readers can find their way.
-
-## Voice
-
-Dry and direct. State requirements and behavior plainly.
-
-- **Cut hedges and nudges:** "just", "simply", "make sure you", "you'll want to".
-  Prefer "X requires Y" over "make sure you have Y so you can do X".
-- **Cut connective filler:** "so that", "in order to", "be sure to".
-- **Limit em dashes** to one per short paragraph; reach for a colon or
-  parentheses before a second.
-- **No conversational framing in callouts or steps.** "Localization requires the
-  latest CLI" beats "Localization is under active development, so make sure
-  you're on the latest CLI before configuring it."
 
 ## Links
 
