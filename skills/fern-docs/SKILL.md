@@ -10,7 +10,7 @@ description: >-
 # Fern docs authoring
 
 Write and edit documentation on a Fern site. `SKILL.md` is the index: follow the
-principles and voice below, then read the `references/` file that matches the
+principles below, then read the `references/` file that matches the
 task before writing. Don't work from this page alone when a reference exists.
 
 ## Fern resources
@@ -34,6 +34,8 @@ Fern's configuration evolves. Look things up rather than guessing.
 |------|------|
 | Writing or editing a changelog entry | `references/changelog.md` |
 | Setting up a product switcher, adding a product, or refactoring nav into products | `references/products.md` |
+| Moving, renaming, or deleting a page, or any edit that changes a published URL | `references/redirects.md` |
+| Editing the same content across multiple pages, or adding generic/boilerplate content (e.g. "contact support") | `references/snippets.md` |
 
 ## Core principles
 
@@ -51,6 +53,11 @@ Fern's configuration evolves. Look things up rather than guessing.
   (MCP server or docs) or say so. Don't invent frontmatter or YAML fields.
 - **Cross-reference.** When you mention a concept documented elsewhere, link to it
   so readers can find their way.
+- **Preserve URLs when they change.** Any edit that moves, renames, or deletes a
+  page — or changes a slug, section, or product — can change a published URL.
+  When it does, set up [redirects](https://buildwithfern.com/learn/docs/seo/redirects.md)
+  from the old path (see `references/redirects.md`) so inbound links and search
+  rankings survive.
 
 ## Links
 
