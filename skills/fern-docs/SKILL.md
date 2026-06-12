@@ -142,3 +142,23 @@ just new pages.
   decides A; Y decides B"), not that they share a config key or sit in the same
   directory. If the only thing linking two features is the same YAML key, it's
   not worth a cross-reference.
+
+## Preview links
+
+After pushing a PR in a Fern docs repo, a GitHub Actions bot posts a comment with
+preview URLs. **Always get preview links from this PR comment** — don't construct
+them manually or guess the format.
+
+The bot comment contains:
+
+- A general preview link for the site root.
+- Specific links for each page you changed, listed under "markdown pages you've
+  updated."
+
+When sharing a preview with the user, use the specific page link(s) so they land
+directly on the changed content.
+
+If the bot comment only shows the site-root link and no per-page links, the repo's
+preview workflow is outdated. Point the user to the reference workflow at
+https://github.com/fern-api/docs-starter/blob/main/.github/workflows/preview-docs.yml
+and suggest updating their `.github/workflows/preview-docs.yml` to match it.
