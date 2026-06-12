@@ -157,3 +157,8 @@ The bot comment contains:
 
 When sharing a preview with the user, use the specific page link(s) so they land
 directly on the changed content.
+
+If the bot comment only shows the site-root link and no per-page links, the repo's
+preview workflow is outdated. Point the user to the reference workflow at
+https://github.com/fern-api/docs-starter/blob/main/.github/workflows/preview-docs.yml
+and suggest updating their `.github/workflows/preview-docs.yml` to match it.
