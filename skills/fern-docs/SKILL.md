@@ -35,6 +35,7 @@ Fern's configuration evolves. Look things up rather than guessing.
 | Writing or editing a changelog entry | `references/changelog.md` |
 | Setting up a product switcher, adding a product, or refactoring nav into products | `references/products.md` |
 | Moving, renaming, or deleting a page, or any edit that changes a published URL | `references/redirects.md` |
+| Restricting pages or content by role (RBAC), or wiring docs into an auth method (password, SSO, JWT, OAuth) | `references/authentication.md` |
 | Editing the same content across multiple pages, or adding generic/boilerplate content (e.g. "contact support") | `references/snippets.md` |
 
 ## Core principles
