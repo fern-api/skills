@@ -40,7 +40,7 @@ Add `-g` to install globally instead of into the current project.
 
 | Skill | Use for |
 |-------|---------|
-| `fern-docs` | Building Fern docs sites: `docs.yml`, navigation, pages, custom MDX, landing pages, and changelog entries. |
+| `fern-docs` | Building Fern docs sites: `docs.yml`, navigation, pages, custom MDX, landing pages, changelog entries, and access control (authentication & RBAC). |
 
 Once installed, your agent uses a skill automatically when the task matches —
 ask it to add a changelog entry or build out your docs and it pulls in
