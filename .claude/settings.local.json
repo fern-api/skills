@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:buildwithfern.com)"
+      "WebFetch(domain:buildwithfern.com)",
+      "Bash(fern check *)"
     ]
   }
 }

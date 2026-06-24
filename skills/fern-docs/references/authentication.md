@@ -34,7 +34,10 @@ in a single task, so know what each is for:
 
 - **Declare roles** — a top-level `roles:` list in `docs.yml`. Every role
   referenced anywhere must be declared here or `fern check` fails. `everyone` is
-  built in and auto-assigned to all visitors, including unauthenticated ones.
+  auto-assigned to all visitors, including unauthenticated ones — but it is *not*
+  exempt from the declaration rule: if you reference it in `viewers:` or
+  `<If roles>`, you must still list `everyone` under `roles:` or `fern check`
+  fails with "Role 'everyone' is used but not declared."
 - **Gate navigation** — a `viewers:` key on a navigation item. Only listed roles
   see it. Fern allows `viewers:` on **products, versions, tabs, sections, pages,
   api references, and changelogs** — every level of the tree.
@@ -138,6 +141,11 @@ Pick by the constraints, not preference:
 - **Inherited restrictions hide more than you think.** Because viewership cascades
   down, a permissive-looking child can still be gated by an ancestor. Check the
   whole path from product down, not just the item itself.
+- **Gating without auth exposes everything.** `viewers:` and `<If roles>` are
+  inert until an auth method is configured. On a published site with *no* auth
+  method, all gated content is publicly visible — *not* hidden, and not locked.
+  `fern check` passing does not mean content is protected. Never treat `viewers:`
+  as protection until auth is wired up and verified live.
 - **Secrets never live in the repo.** Signing keys, client secrets, and passwords
   belong in the Dashboard or with Fern support.
 - **Gating ≠ moving.** Hiding a page with `viewers:` doesn't change its URL, so
@@ -147,8 +155,26 @@ Pick by the constraints, not preference:
 ## Verify
 
 Run `fern check` after editing roles or `viewers:` — it catches undeclared roles
-and malformed config. But `fern check` and `fern docs dev` do **not** prove the
-gating works: visibility is only enforced on the published site with auth
-configured. Confirm it by viewing the deployed site (or a preview instance) as a
-user with and without each role — and explicitly call out that local checks can't
-validate RBAC.
+and malformed config. But neither `fern check` nor `fern docs dev` proves the
+gating works: visibility is only enforced on the **published** site with an auth
+method configured, so a passing check is necessary, not sufficient.
+
+Validating RBAC end-to-end happens mostly outside the repo. Walk the user through
+the full loop and present it as concrete next steps:
+
+1. **Publish** — `fern generate --docs` (needs `fern login` or a `FERN_TOKEN`; add
+   `--no-prompt` for non-interactive runs).
+2. **Configure an auth method** — declaring and gating in the repo enforces
+   nothing on its own. For a quick RBAC test, password protection is the fastest
+   path: in the Dashboard, add one password per role, with role names matching
+   `docs.yml` exactly. Fetch
+   https://buildwithfern.com/learn/dashboard/configuration/password-protection.md
+   for the current Dashboard steps and walk the user through them — don't recite
+   menus from memory, since the UI changes.
+3. **Verify per role** — load the published site and enter each role's credential
+   in turn, confirming each role sees exactly its slice and *not* another's. Give
+   the user a role → expected-visible-content table so they know what correct
+   looks like.
+
+Always tell the user that local checks can't validate RBAC and that auth must be
+live first.
