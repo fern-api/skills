@@ -35,6 +35,13 @@ key or behavior here is unclear, query the Fern MCP server rather than guessing.
 - **Untranslated pages fall back** to the default language automatically. You do
   not create placeholder files; you simply don't have a locale file yet.
 
+> When the translate recipe invokes you, it hands you a **manifest** produced by a
+> deterministic repo scan — the source language, the target locales, the exact
+> source→locale file map with each page's status (translated / stale / missing),
+> and the glossary path. Trust the manifest; you don't need to rediscover this.
+> The steps below explain how that manifest is derived (and are your fallback if
+> you ever work a repo without one).
+
 ## Step 1 — Discover the translation targets
 
 Read the **root `fern/docs.yml`** and find the `translations:` block:
