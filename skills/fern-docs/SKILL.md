@@ -32,6 +32,7 @@ Fern's configuration evolves. Look things up rather than guessing.
 
 | Task | Read |
 |------|------|
+| Updating prose/guide pages after an API definition or spec change | `references/prose-updates.md` |
 | Writing or editing a changelog entry | `references/changelog.md` |
 | Setting up a product switcher, adding a product, or refactoring nav into products | `references/products.md` |
 | Moving, renaming, or deleting a page, or any edit that changes a published URL | `references/redirects.md` |
