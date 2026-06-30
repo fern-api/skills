@@ -200,6 +200,25 @@ Keep it in the repo at `fern/translations/glossary.yml` so it lives beside the
 content it governs and is reviewed in the same PRs (follow an existing location
 if the repo already has one). Pass it into **every** page's translation.
 
+## Writing the output
+
+- **Write each translated page** to its locale path — `translations/{locale}/`
+  plus the source page's relative path, unchanged.
+- **Update the navigation overlay** (`translations/{locale}/docs.yml`) for any
+  new or renamed entry, matching that locale's existing overlay style. Keep its
+  structure and order aligned with the source nav, and never add or drop
+  `viewers:` — gating is inherited (a gated page must stay gated in every
+  language).
+- **Remove orphans.** When a source page was deleted or renamed, delete the
+  matching `translations/{locale}/…` file in every locale and its overlay nav
+  entry. The manifest lists these under "remove (source page deleted/renamed)".
+- **Partial coverage is safe.** You don't have to translate everything in one
+  pass — untranslated pages fall back to the default language. Translate what
+  the manifest flags and leave the rest.
+- **Summarize in the PR description** what changed per locale: pages added,
+  updated, and removed, and any locale still missing pages — so a reviewer can
+  see coverage at a glance.
+
 ## Footguns
 
 - **Don't translate slugs or paths.** URLs are inherited; re-deriving them per
