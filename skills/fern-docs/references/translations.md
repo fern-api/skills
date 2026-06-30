@@ -165,35 +165,33 @@ When in doubt whether a token is content or mechanics, preserve it.
 
 ## Per-repo glossary
 
-Fern has no native glossary, so for cross-page consistency we supply one: a list
-of source terms that must render a fixed way in each locale (or stay untranslated
-everywhere). Brand and product names, proper nouns, and house terminology go
-here. Pass the glossary into **every** page's translation so the same term never
-comes out three different ways across a docs site.
+Fern has no native glossary, so for cross-page consistency build one **per repo**:
+a short list of source terms that must render a fixed way in every locale (or
+stay untranslated everywhere). It exists so the same term never comes out three
+different ways across a docs site — most commonly product names, company and
+partner names, and other proper nouns that should stay verbatim.
 
-**Format** — a YAML file; see `references/translation-glossary.example.yml` for a
-reusable starter. Each entry is a source term plus either `keep: true` (never
-translate, all locales) or per-locale renderings:
+**Discover it from the repo, don't hardcode it.** Scan the source docs for
+recurring brand/proper nouns and the product's own house terminology; those are
+the glossary. When a preferred rendering for a term isn't obvious, default to
+keeping it verbatim rather than guessing a translation.
+
+**Format** — a YAML list; each entry is a source term plus either `keep: true`
+(never translate, all locales) or explicit per-locale renderings:
 
 ```yaml
 terms:
-  - term: "Nexi Checkout"
-    keep: true                 # product name — identical in every locale
-  - term: "merchant"
+  - term: "<ProductName>"      # product/brand name — identical in every locale
+    keep: true
+  - term: "<house-term>"       # a term with a fixed agreed translation
     translations:
-      it: "esercente"
-      de: "Händler"
-      fr: "commerçant"
+      it: "<it rendering>"
+      de: "<de rendering>"
 ```
 
-**Location convention:** keep the glossary in the customer repo at
-`fern/translations/glossary.yml` so it lives beside the content it governs and is
-reviewed in the same PRs. If the repo already keeps one elsewhere, follow that.
-
-**Seeding:** start from the example file, then scan the source docs for recurring
-brand/proper nouns (payment-method names, partner names, product names) and add
-them. Confirm additions with the customer rather than guessing a preferred
-rendering — for many brands the answer is `keep: true`.
+Keep it in the repo at `fern/translations/glossary.yml` so it lives beside the
+content it governs and is reviewed in the same PRs (follow an existing location
+if the repo already has one). Pass it into **every** page's translation.
 
 ## Footguns
 
