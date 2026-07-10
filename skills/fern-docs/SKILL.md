@@ -13,6 +13,14 @@ Write and edit documentation on a Fern site. `SKILL.md` is the index: follow the
 principles below, then read the `references/` file that matches the
 task before writing. Don't work from this page alone when a reference exists.
 
+**Scope: this skill governs Fern docs content only** — MDX pages, navigation,
+`docs.yml` and related config, snippets, changelog entries, custom components,
+and landing pages. It does **not** govern repo governance or tooling files that
+happen to live in the same repo, such as `CLAUDE.md`, `AGENTS.md`,
+`STYLE-GUIDE.md`, and contributor guides. Never apply the principles below —
+"one canonical home," "prefer editing over creating," consolidation — to those
+files. Leave them alone unless the user explicitly asks you to edit them.
+
 ## Fern resources
 
 Fern's configuration evolves. Look things up rather than guessing.
