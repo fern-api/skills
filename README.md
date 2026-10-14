@@ -41,6 +41,7 @@ Add `-g` to install globally instead of into the current project.
 | Skill | Use for |
 |-------|---------|
 | `fern-docs` | Building Fern docs sites: `docs.yml`, navigation, pages, custom MDX, landing pages, changelog entries, and access control (authentication & RBAC). |
+| `fern-sdks` | Configuring and generating Fern SDKs: `generators.yml` (groups, outputs, GitHub modes), `fern.config.json`, auth schemes, environments, `.fernignore`/Replay custom code, `fern generate` options and troubleshooting. |
 
 Once installed, your agent uses a skill automatically when the task matches —
 ask it to add a changelog entry or build out your docs and it pulls in
