@@ -86,7 +86,7 @@ paths:
                 type: object
                 properties:
                   data: { type: array, items: { $ref: "#/components/schemas/User" } }
-                  next_cursor: { type: string, nullable: true }
+                  next_cursor: { type: [string, "null"] }   # 3.0: type: string, nullable: true
 ```
 
 Commands:
