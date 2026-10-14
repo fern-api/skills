@@ -12,7 +12,8 @@ fern generate --group <g> --version 1.2.3   # set package version + release tag
 fern generate --group <g> --preview     # no publish; writes to fern/.preview/<generator-name>/
 fern generate --group <g> --local       # run generator Docker images locally (no login)
 fern generate --group <g> --local --preview --force   # fully offline-ish dry run, no prompts
-fern generate --group <g> --local --package [--package-mode host|docker] [--package-only]
+fern generate --group <g> --local --package [--package-mode host|docker]   # artifacts in fern-dist/
+fern generate --group <g> --local --package-only   # package, then delete everything except fern-dist/ (and .fernignore'd paths)
 fern generate --no-replay --local       # skip Replay for this run
 fern generate --fernignore ./custom.fernignore --local
 fern generator upgrade [--include-major]   # update generator versions in generators.yml

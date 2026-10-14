@@ -79,7 +79,7 @@ When the spec in the Fern config repo changes, Fern regenerates and releases. Re
 
 ## Local artifacts without a registry
 
-`fern generate --group <g> --local --package` builds installable artifacts (`.tgz`, wheel, `.jar`, `.nupkg`, `.gem`, …) into `fern-dist/` for `local-file-system` outputs — useful for internal registries or air-gapped environments. `--package-mode docker` builds inside Docker when the host lacks the toolchain; `--package-only` skips regeneration. `github` outputs are ignored by `--package`.
+`fern generate --group <g> --local --package` builds installable artifacts (`.tgz`, wheel, `.jar`, `.nupkg`, `.gem`, …) into `fern-dist/` for `local-file-system` outputs — useful for internal registries or air-gapped environments. `--package-mode docker` builds inside Docker when the host lacks the toolchain; `--package-only` deletes everything but `fern-dist/` (and `.fernignore`d paths) after packaging, so only the artifact remains. `github` outputs are ignored by `--package`.
 
 ## Checklist before a first release
 

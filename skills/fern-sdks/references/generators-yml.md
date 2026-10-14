@@ -7,9 +7,10 @@ fern/
   fern.config.json      # { "organization": "acme", "version": "<fern CLI version>" }
   generators.yml        # API specs + SDK generators (this file)
   openapi/openapi.yml   # or asyncapi/, definition/ (Fern Definition), openrpc/
-  .fernignore           # optional; files Fern must not overwrite (see custom-code.md)
   .preview/             # output of `fern generate --preview` (gitignored)
 ```
+
+`.fernignore` is not part of this folder: it lives at the root of each generated SDK repository (see custom-code.md).
 
 Multi-API repos use `fern/apis/<api-name>/generators.yml` (one API per folder) and `fern generate --api <api-name>`. One `generators.yml` can also list several specs, each with a `namespace`, to produce a single combined SDK.
 
@@ -67,7 +68,7 @@ aliases:
   all: [sdks, postman]
 groups:
   sdks:
-    audiences: [public]              # only endpoints/schemas tagged x-fern-audiences: [public]
+    audiences: [public]              # drop elements tagged only with other audiences; untagged elements stay
     reviewers:                       # default reviewers on generated PRs (pull-request mode)
       teams: [sdk-team]
     generators:

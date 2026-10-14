@@ -66,10 +66,22 @@ Resolution order at runtime: per-request option → client constructor → `env`
 
 ## Environments and base URLs
 
-Single-host APIs: use OpenAPI `servers` (each gets a name via `x-fern-server-name`). Multi-host APIs or when the spec can't be changed:
+Single-host APIs: use OpenAPI `servers` (each gets a name via `x-fern-server-name`), or override in `generators.yml`:
 
 ```yaml
 api:
+  environments:
+    Production: https://api.acme.com
+    Staging: https://api.staging.acme.com
+    base-url-env: ACME_BASE_URL     # TypeScript only: env var read when no base URL/environment is passed
+```
+
+Multi-host APIs (different endpoints on different hosts) need both `generators.yml` and the spec:
+
+```yaml
+api:
+  default-environment: Production
+  default-url: api                  # which URL key is the default for endpoints without x-fern-server-name
   environments:
     Production:
       api: https://api.acme.com
@@ -77,10 +89,6 @@ api:
     Staging:
       api: https://api.staging.acme.com
       auth: https://auth.staging.acme.com
-  default-environment: Production
-  # or, for a single configurable URL:
-  # default-url: https://api.acme.com
-  # base-url-env: ACME_BASE_URL
 ```
 
 Endpoints are assigned to a host with `x-fern-server-name: auth` in the spec. SDKs expose `environment: AcmeEnvironment.Staging` (naming varies per language) and a `baseUrl`/`base_url` override.
