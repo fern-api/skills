@@ -66,8 +66,10 @@ api:
   default-environment: Production
   default-url: api
   environments:
-    Production: { api: https://api.acme.com, ai: https://ai.acme.com }
-    Staging:    { api: https://api.staging.acme.com, ai: https://ai.staging.acme.com }
+    Production:
+      urls: { api: https://api.acme.com, ai: https://ai.acme.com }        # multi-host environments need the urls: wrapper
+    Staging:
+      urls: { api: https://api.staging.acme.com, ai: https://ai.staging.acme.com }
 ```
 
 ```yaml
