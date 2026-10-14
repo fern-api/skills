@@ -54,7 +54,7 @@ servers:
 
 - The first server is the default. Named servers become an environment enum in SDKs (`AcmeEnvironment.Staging`) and selectable servers in the docs playground.
 - Unnamed servers get generic names; always add `x-fern-server-name`.
-- `x-fern-base-url-env: ACME_BASE_URL` (document level) lets SDKs read the base URL from an environment variable when none is passed (generator support varies; `generators.yml` `environments.base-url-env` takes precedence).
+- `x-fern-base-url-env: ACME_BASE_URL` (document level) lets SDKs read the base URL from an environment variable when none is passed (generator support varies; `generators.yml` `api.base-url-env` — a sibling of `environments`, not inside it — takes precedence).
 
 ### Multiple hosts for one API
 
