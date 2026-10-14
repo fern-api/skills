@@ -41,6 +41,7 @@ Add `-g` to install globally instead of into the current project.
 | Skill | Use for |
 |-------|---------|
 | `fern-docs` | Building Fern docs sites: `docs.yml`, navigation, pages, custom MDX, landing pages, changelog entries, and access control (authentication & RBAC). |
+| `fern-openapi` | Making OpenAPI/AsyncAPI specs Fern-friendly: `operationId`/schema hygiene, `x-fern-*` extensions (method names, pagination, examples, audiences, global headers, SDK variables), overlays vs overrides, auth and servers, spec sync. |
 
 Once installed, your agent uses a skill automatically when the task matches —
 ask it to add a changelog entry or build out your docs and it pulls in
