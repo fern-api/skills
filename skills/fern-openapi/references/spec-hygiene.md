@@ -12,7 +12,7 @@ Fern reads the spec as-is; most SDK quality problems trace back to the spec. Che
 | `required` | Optional vs required fields/params | List required properties explicitly; everything else is optional. |
 | `nullable: true` / `type: [string, "null"]` | `Optional`/nullable types | Keep nullable distinct from optional; `settings.respect-nullable-schemas` / `coerce-optional-schemas-to-nullable` tune the mapping. |
 | `enum` | Enum types | Use `x-fern-enum` to attach names/descriptions/deprecation to values. |
-| `oneOf` + `discriminator` | Discriminated unions | Prefer discriminated unions over bare `oneOf`; add `x-fern-discriminator-context` if the discriminator lives elsewhere. |
+| `oneOf` + `discriminator` | Discriminated unions | Prefer discriminated unions over bare `oneOf`; for SSE streams whose discriminator is the `event` field set `x-fern-discriminator-context: protocol`. |
 | `responses` with schemas for 4xx/5xx | Typed error classes | Give each error status a schema (or use `settings.error-responses` in `generators.yml`). Without schemas, SDKs throw a generic `ApiError`. |
 | `examples` / `x-fern-examples` | README, reference.md, docs code samples, wire tests | Add at least one example per important endpoint; run `fern api enrich` to inline Fern-generated examples. |
 | `servers` | Environments / base URL | At least one; name them with `x-fern-server-name`. |

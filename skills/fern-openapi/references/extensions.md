@@ -34,7 +34,7 @@ tags:
     x-displayName: User management        # docs sidebar label
 ```
 
-- `x-fern-sdk-namespace` (top level or per spec in `generators.yml` as `namespace`) prefixes everything from that spec when combining several specs into one SDK.
+- `x-fern-sdk-namespace` on a schema in `components.schemas` (or on a shared error response with `settings.namespaced-errors: true`) places that one type in a namespace (`garden.Plant`). Namespacing a whole spec is done in `generators.yml` with the per-spec `namespace` key, not with this extension.
 - `x-fern-base-path` (top level) prepends a path to every endpoint.
 - `x-fern-default` sets a default value on a parameter or header (`x-fern-default: "2024-02-08"`).
 
@@ -125,6 +125,8 @@ paths:
       parameters:
         - name: accountId
           in: path
+          required: true
+          schema: { type: string }
           x-fern-sdk-variable: accountId
 
 x-fern-version:                # header-based API versioning exposed as a client option
@@ -157,7 +159,7 @@ Pages: `retry-behavior`, `idempotency`.
 ## Docs-only
 
 - `x-fern-explorer` controls the API Explorer/playground for an operation (`api-explorer-control`).
-- `x-fern-discriminator-context` helps docs/SDKs resolve a discriminator defined outside the `oneOf` (`discriminator-context`).
+- `x-fern-discriminator-context: data | protocol` on a `discriminator` object says whether the discriminator is a property of the JSON body (default) or protocol framing such as the SSE `event` field (`discriminator-context`).
 - `x-fern-global-parameters` lifts common query parameters to the client (`global-parameters`).
 
 If an extension isn't on the overview page, Fern doesn't support it; look for a `generators.yml` setting instead (`fern-sdks` skill) or ask on https://github.com/fern-api/fern/issues.
