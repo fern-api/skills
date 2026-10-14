@@ -24,7 +24,7 @@ Other CI providers (GitLab CI, CircleCI, Azure Pipelines, Buildkite): any image 
 | `fern check` | No |
 | `fern generate --docs` (preview or publish) | Yes |
 | `fern generate` (remote SDK generation, default) | Yes |
-| `fern generate --local` | No (but registry/GitHub tokens if it publishes) |
+| `fern generate --local` | Yes (organization verification), plus registry/GitHub tokens if it publishes |
 | `fern api update` | No (needs network access to `origin`) |
 | `fern generator upgrade`, `fern upgrade` | No |
 

@@ -27,9 +27,10 @@ jobs:
         with: { node-version: 20 }
       - uses: fern-api/setup-fern-cli@v1
       - run: fern check
-      - run: fern generate --group ts-sdk --version ${{ inputs.version }} --force --log-level debug
+      - run: fern generate --group ts-sdk --version "$VERSION" --force --log-level debug
         env:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
+          VERSION: ${{ inputs.version }}     # pass inputs via env, never inline `${{ inputs.* }}` in `run:` (shell injection)
 ```
 
 What happens next depends on `github.mode` in `generators.yml` (details in the `fern-sdks` skill):
@@ -68,11 +69,12 @@ Nothing is pushed or published; the generated SDK lands in `fern/.preview/<gener
 ## Self-hosted / local generation in CI
 
 ```yaml
-- run: fern generate --group ts-sdk --local --force --package --package-mode docker
-  # artifacts in fern-dist/ for local-file-system outputs
+- run: fern generate --group ts-sdk --local --force --package
+  env: { FERN_TOKEN: ${{ secrets.FERN_TOKEN }} }
+  # artifacts in <output.path>/fern-dist/ for each local-file-system output, e.g. SDKs/acme-node-sdk/fern-dist/acme-1.0.0.tgz
 ```
 
-Requires a Docker-capable runner (GitHub-hosted Ubuntu runners have Docker). No `FERN_TOKEN` needed. Use `image.registry` in `generators.yml` if generator images are mirrored to a private registry, and `--package` to produce installable artifacts (`.tgz`, wheel, jar, nupkg, gem) for internal registries. `--package-only` leaves only `fern-dist/` behind. Local generation can also push to GitHub when `github` is configured and a `GITHUB_TOKEN` with write access is in the environment, but Replay and the Fern GitHub App integration are remote-only features.
+Requires a Docker-capable runner (GitHub-hosted Ubuntu runners have Docker). `--local` still needs `FERN_TOKEN` for organization verification (see https://buildwithfern.com/learn/sdks/deep-dives/self-hosted); it just doesn't use Fern's remote generation service. Use `image.registry` in `generators.yml` if generator images are mirrored to a private registry, and `--package` to produce installable artifacts (`.tgz`, wheel, jar, nupkg, gem) for internal registries. `--package-only` leaves only `fern-dist/` behind in each output directory. Local generation can also push to GitHub when `github` is configured and a `GITHUB_TOKEN` with write access is in the environment, but Replay and the Fern GitHub App integration are remote-only features.
 
 ## Autorelease
 
