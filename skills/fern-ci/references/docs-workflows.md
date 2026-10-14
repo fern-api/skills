@@ -16,7 +16,7 @@ permissions:
   pull-requests: write          # to comment the URL
 jobs:
   preview:
-    if: github.event.pull_request.head.repo.full_name == github.repository   # forks have no secrets
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'   # forks and Dependabot PRs have no secrets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
