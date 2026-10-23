@@ -60,7 +60,8 @@ If you customise the generated workflow, add `.github/workflows/ci.yml` to the S
 
 ```yaml
 - run: fern generate --group ts-sdk --preview
-  env: { FERN_TOKEN: ${{ secrets.FERN_TOKEN }} }
+  env:
+    FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
 - run: cd fern/.preview/fern-typescript-sdk && npm ci && npm run build && npm test
 ```
 
@@ -70,7 +71,8 @@ Nothing is pushed or published; the generated SDK lands in `fern/.preview/<gener
 
 ```yaml
 - run: fern generate --group ts-sdk --local --force --package
-  env: { FERN_TOKEN: ${{ secrets.FERN_TOKEN }} }
+  env:
+    FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
   # artifacts in <output.path>/fern-dist/ for each local-file-system output, e.g. SDKs/acme-node-sdk/fern-dist/acme-1.0.0.tgz
 ```
 

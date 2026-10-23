@@ -40,11 +40,13 @@ Secrets are not available to workflows triggered from forks or by Dependabot. Gu
 
 ```yaml
 - id: token
-  env: { FERN_TOKEN: ${{ secrets.FERN_TOKEN }} }
+  env:
+    FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
   run: echo "present=$([ -n "$FERN_TOKEN" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
 - if: steps.token.outputs.present == 'true'
   run: fern generate --docs --preview
-  env: { FERN_TOKEN: ${{ secrets.FERN_TOKEN }} }
+  env:
+    FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
 ```
 
 Never echo the token, never write it to a file in the workspace, and don't pass it on the command line. Rotate it from the Fern Dashboard (https://dashboard.buildwithfern.com) if it leaks.

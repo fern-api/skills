@@ -62,4 +62,4 @@ jobs:
       - run: fern check
 ```
 
-Add `env: { FERN_TOKEN: ${{ secrets.FERN_TOKEN }} }` to any step that runs `fern generate` (docs or SDKs, remote or `--local`). `fern check` does not need a token.
+Add `FERN_TOKEN: ${{ secrets.FERN_TOKEN }}` under `env:` (block style — `${{ }}` inside a `{ }` flow mapping is invalid YAML) on any step that runs `fern generate` (docs or SDKs, remote or `--local`). `fern check` does not need a token.
