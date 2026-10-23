@@ -111,9 +111,9 @@ x-fern-global-headers:
     name: tenantId             # SDK option name
     optional: true
     env: ACME_TENANT_ID
-  - header: X-API-Version
-    name: version
-    x-fern-default: "2024-02-08"
+  - header: X-Partner-Id
+    name: partnerId
+    x-fern-default: acme   # don't reuse the x-fern-version header name here
 
 x-fern-sdk-variables:          # path params lifted to the client constructor
   accountId:
