@@ -8,11 +8,11 @@ Fern generates code remotely by default (`fern generate`, requires `fern login` 
 github:
   repository: acme/acme-typescript   # Fern GitHub App must be installed on this repo
   mode: pull-request                 # release (default) | pull-request | push
-  branch: main                       # push mode only (required there)
+  branch: main                       # optional in every mode: release commits/tags here, pull-request/push target it
   license: MIT                       # or { custom: ./LICENSE }
   reviewers:
-    teams: [sdk-owners]
-    users: [octocat]
+    teams: [{ name: sdk-owners }]    # entries are objects with `name`
+    users: [{ name: octocat }]
   workflows: false                   # skip generating .github/workflows (token lacks `workflows` scope)
 ```
 
@@ -30,26 +30,47 @@ Only one `output` per generator entry. Tokens are `${ENV_VAR}` references resolv
 
 ```yaml
 # npm
-output: { location: npm, package-name: "@acme/sdk", token: ${NPM_TOKEN} }
-# npm with private registry
-output: { location: npm, package-name: "@acme/sdk", token: ${NPM_TOKEN}, url: https://npm.acme.internal }
+output:
+  location: npm
+  package-name: "@acme/sdk"
+  token: ${NPM_TOKEN}
+  # url: https://npm.acme.internal   # private registry
 # PyPI
-output: { location: pypi, package-name: acme, token: ${PYPI_TOKEN} }
+output:
+  location: pypi
+  package-name: acme
+  token: ${PYPI_TOKEN}
 # Maven (Sonatype / Central)
 output:
   location: maven
   coordinate: com.acme:acme-java
   username: ${MAVEN_USERNAME}
   password: ${MAVEN_PASSWORD}
-  signature: { keyId: ${MAVEN_KEY_ID}, password: ${MAVEN_KEY_PASSWORD}, secretKey: ${MAVEN_SECRET_KEY} }
+  signature:
+    keyId: ${MAVEN_KEY_ID}
+    password: ${MAVEN_KEY_PASSWORD}
+    secretKey: ${MAVEN_SECRET_KEY}
 # NuGet
-output: { location: nuget, package-name: Acme.Sdk, api-key: ${NUGET_API_KEY} }
-# RubyGems
-output: { location: rubygems, package-name: acme, api-key: ${RUBYGEMS_API_KEY} }
+output:
+  location: nuget
+  package-name: Acme.Sdk
+  api-key: ${NUGET_API_KEY}
+# RubyGems — needs a github: block too; the gem is pushed by the GitHub Actions workflow in that repo, not by Fern directly
+output:
+  location: rubygems
+  package-name: acme
+  api-key: ${RUBYGEMS_API_KEY}
+github:
+  repository: acme/acme-ruby
 # Postman
-output: { location: postman, api-key: ${POSTMAN_API_KEY}, workspace-id: ${POSTMAN_WORKSPACE_ID} }
+output:
+  location: postman
+  api-key: ${POSTMAN_API_KEY}
+  workspace-id: ${POSTMAN_WORKSPACE_ID}
 # Local only (no publish). Also the only mode that works with --package
-output: { location: local-file-system, path: ../sdks/typescript }
+output:
+  location: local-file-system
+  path: ../sdks/typescript
 ```
 
 Go has no registry: publishing is pushing a tagged commit to the GitHub repo (`github` + `release`/`pull-request`), and `config.module.path` must match the repo path.

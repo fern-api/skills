@@ -46,7 +46,7 @@ api:
         inline-path-parameters: false
         idiomatic-request-names: true             # ListUsersRequest instead of UsersListRequest
         respect-nullable-schemas: false
-        ignore-tags: [internal]
+        ignore-tags: false                        # true = ignore operation tags for SDK structure (boolean, not a tag filter; drop endpoints with x-fern-ignore or audiences)
         filter:
           endpoints: ["GET /users", "POST /users"]
         error-responses:                          # typed errors from a shared error schema
@@ -54,7 +54,7 @@ api:
           apply-to: untyped                       # or all
           ensure:
             - status-code: 429
-              methods: [GET, POST]
+              methods: [get, post]                  # lowercase
     - asyncapi: ./asyncapi.yml
 ```
 
@@ -70,7 +70,7 @@ groups:
   sdks:
     audiences: [public]              # drop elements tagged only with other audiences; untagged elements stay
     reviewers:                       # default reviewers on generated PRs (pull-request mode)
-      teams: [sdk-team]
+      teams: [{ name: sdk-team }]    # entries are objects with `name`
     generators:
       - name: fernapi/fern-python-sdk
         version: 5.41.2

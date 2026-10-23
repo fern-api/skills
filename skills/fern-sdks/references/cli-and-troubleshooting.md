@@ -50,7 +50,7 @@ Remote vs local: remote generation (default) runs on Fern's infrastructure and h
 | `workflows` permission error on push | Add `github.workflows: false` or grant the token `workflows` scope. |
 | Version rejected | Use `X.Y.Z` or `X.Y.Z-rcN`. |
 | Generated PR overwrote hand-written code | File wasn't in `.fernignore` (whole-file) and repo isn't in `pull-request` mode (Replay). See custom-code.md. |
-| New endpoint missing from SDK | Endpoint filtered by `audiences`, `ignore-tags`, `settings.filter`, or `x-fern-ignore`; or spec `origin` not refreshed (`fern api update`). |
+| New endpoint missing from SDK | Endpoint filtered by `audiences`, `settings.filter`, or `x-fern-ignore`; or spec `origin` not refreshed (`fern api update`). |
 | Method named `postUsers`/odd request names | Missing `operationId`; use `x-fern-sdk-method-name` / `x-fern-request-name` (`fern-openapi`). |
 | Errors are generic (`ApiError`) not typed | Spec lacks response schemas for error codes; add them or `settings.error-responses`. |
 | `--package` produced nothing | Only `local-file-system` outputs are packaged; GitHub/registry outputs are skipped silently. |
