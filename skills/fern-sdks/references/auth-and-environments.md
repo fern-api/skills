@@ -62,7 +62,7 @@ api:
       client-default: default
 ```
 
-Resolution order at runtime: per-request option → client constructor → `env` → `client-default`. Headers can also be declared in the spec with `x-fern-global-headers` (see `fern-openapi`).
+Resolution order at runtime: per-request option → client constructor → `env` → `client-default`. Headers can also be declared in the spec with `x-fern-global-headers` (see `fern-spec`).
 
 ## Environments and base URLs
 
@@ -100,7 +100,7 @@ Templated hosts (`https://{region}.api.acme.com`) use OpenAPI server `variables`
 
 ## SDK variables
 
-Path parameters that are the same for every call (account IDs, project IDs) can be lifted to the client with `x-fern-sdk-variables` / `x-fern-sdk-variable` in the spec, so users set them once at construction. Spec-side detail is in `fern-openapi`.
+Path parameters that are the same for every call (account IDs, project IDs) can be lifted to the client with `x-fern-sdk-variables` / `x-fern-sdk-variable` in the spec, so users set them once at construction. Spec-side detail is in `fern-spec`.
 
 ## Debugging auth problems
 

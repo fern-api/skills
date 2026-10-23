@@ -22,7 +22,7 @@ github:
 | `pull-request` | Opens a PR with the regenerated code. Required for Replay (line-level custom-code preservation). Nothing is published until the PR is merged and a release/tag is cut. | Recommended for anything with custom code or human review. |
 | `push` | Pushes to `branch` without tagging. | You run your own release process. |
 
-Self-hosted Git: replace `repository` with `uri: https://github.acme.internal/org/repo` and `token: ${GIT_TOKEN}`. GitLab/Bitbucket are not supported as `github` targets; use `location: local-file-system` and commit from your own pipeline (see `fern-ci`).
+Self-hosted Git: replace `repository` with `uri: https://github.acme.internal/org/repo` and `token: ${GIT_TOKEN}`. GitLab/Bitbucket are not supported as `github` targets; use `location: local-file-system` and commit from your own pipeline (see `fern-workflows`).
 
 ## Registries (`output`)
 
@@ -108,4 +108,4 @@ When the spec in the Fern config repo changes, Fern regenerates and releases. Re
 2. `fern check` passes and a `--preview` build was inspected.
 3. Package name is available on the registry.
 4. `mode` chosen deliberately (`pull-request` if anyone will hand-edit the SDK).
-5. `fern generate --group <g> --version 0.1.0` (or run the CI workflow described in `fern-ci`).
+5. `fern generate --group <g> --version 0.1.0` (or run the CI workflow described in `fern-workflows`).

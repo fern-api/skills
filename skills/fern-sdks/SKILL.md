@@ -11,7 +11,7 @@ description: >-
 
 # Fern SDKs
 
-Use this skill when a task involves generating or publishing SDKs with Fern: editing `fern/generators.yml` or `fern/fern.config.json`, adding a language, changing where an SDK is published, keeping hand-written code across regenerations, or debugging a `fern generate` run. For editing the API spec itself (OpenAPI, `x-fern-*` extensions, overlays) use the `fern-openapi` skill; for CI workflows use `fern-ci`; for docs sites use `fern-docs`.
+Use this skill when a task involves generating or publishing SDKs with Fern: editing `fern/generators.yml` or `fern/fern.config.json`, adding a language, changing where an SDK is published, keeping hand-written code across regenerations, or debugging a `fern generate` run. For editing the API spec itself (OpenAPI, `x-fern-*` extensions, overlays) use the `fern-spec` skill; for CI workflows use `fern-workflows`; for docs sites use `fern-docs`.
 
 ## Fern resources
 
@@ -46,7 +46,7 @@ Load only the reference you need.
 5. Validate without publishing: `fern generate --group <g> --preview` (remote, needs `fern login` or `FERN_TOKEN`) or `fern generate --group <g> --local --preview` (Docker, no login). Output lands in `fern/.preview/<generator>/`.
 6. Custom code goes in files listed in `.fernignore` (whole-file) or is preserved by Replay (line-level, `pull-request` mode). Don't edit generated files in a `release`/`push` repo and expect the edit to survive.
 7. Don't put real tokens in `generators.yml`; use `${ENV_VAR}` references and GitHub/CI secrets.
-8. Changes to the SDK's public surface (method names, request wrappers, error types) are usually spec-side (`operationId`, `x-fern-sdk-method-name`, `x-fern-request-name`, `error-responses`) — hand off to `fern-openapi` for those.
+8. Changes to the SDK's public surface (method names, request wrappers, error types) are usually spec-side (`operationId`, `x-fern-sdk-method-name`, `x-fern-request-name`, `error-responses`) — hand off to `fern-spec` for those.
 
 ## Quick reference
 

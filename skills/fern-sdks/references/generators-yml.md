@@ -58,7 +58,7 @@ api:
     - asyncapi: ./asyncapi.yml
 ```
 
-Overlays vs overrides vs editing the spec is covered in the `fern-openapi` skill; from the SDK side only the file reference above matters.
+Overlays vs overrides vs editing the spec is covered in the `fern-spec` skill; from the SDK side only the file reference above matters.
 
 ### Groups and generator entries
 
