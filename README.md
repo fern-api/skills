@@ -43,6 +43,7 @@ Add `-g` to install globally instead of into the current project.
 | `fern-docs` | Building Fern docs sites: `docs.yml`, navigation, pages, custom MDX, landing pages, changelog entries, and access control (authentication & RBAC). |
 | `fern-sdks` | Configuring and generating Fern SDKs: `generators.yml` (groups, outputs, GitHub modes), `fern.config.json`, auth schemes, environments, `.fernignore`/Replay custom code, `fern generate` options and troubleshooting. |
 | `fern-spec` | Making OpenAPI/AsyncAPI specs Fern-friendly: `operationId`/schema hygiene, `x-fern-*` extensions (method names, pagination, examples, audiences, global headers, SDK variables), overlays vs overrides, auth and servers, spec sync. |
+| `fern-workflows` | CI/CD for Fern projects: `fern check` on PRs, docs preview links and publishing, SDK release workflows and publishing modes, OpenAPI spec sync, `FERN_TOKEN`/registry secrets, runner-only failures. |
 
 Once installed, your agent uses a skill automatically when the task matches —
 ask it to add a changelog entry or build out your docs and it pulls in
