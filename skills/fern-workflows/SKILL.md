@@ -1,5 +1,5 @@
 ---
-name: fern-ci
+name: fern-workflows
 description: >-
   Set up CI/CD for Fern projects: GitHub Actions (or any CI) that run fern
   check on pull requests, publish docs previews and production docs, generate
@@ -11,7 +11,7 @@ description: >-
 
 # Fern CI
 
-Use this skill when wiring the Fern CLI into automation: validating on PRs, docs preview links and publishing, SDK generation/release, spec sync, and the failures that only show up on a CI runner. Configuration of `generators.yml` itself is in `fern-sdks`; spec edits in `fern-openapi`; docs content in `fern-docs`.
+Use this skill when wiring the Fern CLI into automation: validating on PRs, docs preview links and publishing, SDK generation/release, spec sync, and the failures that only show up on a CI runner. Configuration of `generators.yml` itself is in `fern-sdks`; spec edits in `fern-spec`; docs content in `fern-docs`.
 
 ## Fern resources
 

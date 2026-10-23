@@ -1,6 +1,6 @@
 # Keeping the OpenAPI spec in sync
 
-When the spec is produced by the server (framework export, gateway, another repo), don't hand-edit the copy in `fern/`. Point Fern at the source and let CI refresh it; keep Fern customisations in an overlay/overrides file so they survive updates (see `fern-openapi`).
+When the spec is produced by the server (framework export, gateway, another repo), don't hand-edit the copy in `fern/`. Point Fern at the source and let CI refresh it; keep Fern customisations in an overlay/overrides file so they survive updates (see `fern-spec`).
 
 ```yaml
 # fern/generators.yml
