@@ -50,7 +50,7 @@ api:
 fern api update        # re-download every spec with an origin (the target file must already exist)
 ```
 
-Automate it with the `fern-api/sync-openapi` GitHub Action (see the `fern-ci` skill): it runs `fern api update` on a schedule and opens a PR with the diff. Fern customisations survive because they live in the overlay/overrides file.
+Automate it with the `fern-api/sync-openapi` GitHub Action (see the `fern-workflows` skill): it runs `fern api update` on a schedule and opens a PR with the diff. Fern customisations survive because they live in the overlay/overrides file.
 
 ## OpenAPI vs Fern Definition
 

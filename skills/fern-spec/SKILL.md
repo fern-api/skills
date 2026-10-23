@@ -1,5 +1,5 @@
 ---
-name: fern-openapi
+name: fern-spec
 description: >-
   Author and tune OpenAPI specs for Fern SDK and docs generation: operationId
   and schema hygiene, x-fern-* extensions (sdk-group-name, sdk-method-name,
@@ -12,7 +12,7 @@ description: >-
 
 # Fern OpenAPI
 
-Use this skill when the task is about the API definition Fern reads: making an OpenAPI/AsyncAPI spec produce good SDK method names, groups, types, pagination, errors and docs; adding `x-fern-*` extensions; deciding between editing the spec, an overlay, or an overrides file; keeping the spec in sync with its source. For `generators.yml`/publishing use `fern-sdks`; for CI use `fern-ci`; for docs pages use `fern-docs`.
+Use this skill when the task is about the API definition Fern reads: making an OpenAPI/AsyncAPI spec produce good SDK method names, groups, types, pagination, errors and docs; adding `x-fern-*` extensions; deciding between editing the spec, an overlay, or an overrides file; keeping the spec in sync with its source. For `generators.yml`/publishing use `fern-sdks`; for CI use `fern-workflows`; for docs pages use `fern-docs`.
 
 ## Fern resources
 
