@@ -1,8 +1,11 @@
 ---
 name: fern-docs
 description: >-
-  Author and edit Fern documentation: MDX pages, navigation, docs.yml config,
-  custom components, landing pages, and changelog entries. Use when working in a
+  Build and edit Fern documentation: turn an OpenAPI spec into a published
+  docs site (fern init --docs, fern generate --docs, --guest when there is no
+  Fern account), MDX pages, navigation, docs.yml config, custom components,
+  landing pages, and changelog entries. Use when asked to build or publish API
+  docs with Fern, even when no fern/ directory exists yet, or when working in a
   Fern docs repo (a fern/ directory with docs.yml). Routes to a detailed
   reference per task.
 ---
@@ -40,6 +43,7 @@ Fern's configuration evolves. Look things up rather than guessing.
 
 | Task | Read |
 |------|------|
+| Building or publishing a docs site from an OpenAPI spec, from scratch or without a Fern account | `references/quickstart-openapi.md` |
 | Writing or editing a changelog entry | `references/changelog.md` |
 | Setting up a product switcher, adding a product, or refactoring nav into products | `references/products.md` |
 | Moving, renaming, or deleting a page, or any edit that changes a published URL | `references/redirects.md` |
