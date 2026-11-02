@@ -46,7 +46,7 @@ Requires Node 18+. Skills are plain Markdown, so you can also copy a
 
 | Skill | Use for |
 |-------|---------|
-| `fern-docs` | Building Fern docs sites: `docs.yml`, navigation, pages, custom MDX, landing pages, changelog entries, and access control (authentication & RBAC). |
+| `fern-docs` | Building Fern docs sites: publishing an OpenAPI spec as a docs site (with or without a Fern account), `docs.yml`, navigation, pages, custom MDX, landing pages, changelog entries, and access control (authentication & RBAC). |
 | `fern-sdks` | Generating and publishing SDKs: `fern.config.json`, `generators.yml` (groups, generators, outputs, GitHub modes), auth schemes and environments, `.fernignore` custom code, `fern generate` / `fern check` / `fern generator upgrade`, registry publishing, troubleshooting generated code. |
 | `fern-spec` | Making OpenAPI/AsyncAPI specs Fern-friendly: `operationId`/schema hygiene, `x-fern-*` extensions (method names, pagination, examples, audiences, global headers, SDK variables), overlays vs overrides, auth and servers, spec sync. |
 | `fern-workflows` | Running Fern in CI/CD: `fern check` on PRs, docs preview links and publishing, SDK release workflows and publishing modes, OpenAPI spec sync, `FERN_TOKEN`/registry secrets, runner-only failures. |
@@ -55,7 +55,7 @@ Requires Node 18+. Skills are plain Markdown, so you can also copy a
 
 | You want to… | Skill |
 |--------------|-------|
-| Add a docs page, change navigation, write a changelog entry, style the site | `fern-docs` |
+| Turn an OpenAPI spec into a published docs site, add a docs page, change navigation, write a changelog entry, style the site | `fern-docs` |
 | Add a language, change where an SDK is published, keep hand-written code across regenerations, debug `fern generate` | `fern-sdks` |
 | Fix odd SDK method names, add pagination/examples/errors, decide between editing the spec, an overlay or an overrides file | `fern-spec` |
 | Run `fern check` on pull requests, preview docs per PR, release an SDK from GitHub Actions, keep the spec in sync | `fern-workflows` |
@@ -69,6 +69,7 @@ The skills cross-reference each other, so install the ones that match your repo
 Once installed, your agent reads each skill's description and uses it when the
 task matches — nothing else to configure. For example:
 
+- "I have an OpenAPI spec, build docs for me using Fern" → `fern-docs`
 - "Add a changelog entry for the new webhooks endpoint" → `fern-docs`
 - "Publish our Python SDK to PyPI as `acme-sdk`" → `fern-sdks`
 - "The SDK method is called `postV1Users`, make it `users.create`" → `fern-spec`
