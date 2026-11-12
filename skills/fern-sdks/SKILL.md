@@ -84,7 +84,7 @@ fern check                                   # validate api + generators.yml
 fern generate --group ts-sdk --preview       # dry run into fern/.preview/
 fern generate --group ts-sdk --version 1.2.0 # publish / open PR with that version
 fern generate --group ts-sdk --local         # run generator in Docker, no Fern login
-fern generate --guest                        # no Fern account: guest build + claim link
+fern generate --guest --preview              # no Fern account: guest build into fern/.preview/ + claim link (--preview because the group above publishes)
 fern generator upgrade                       # bump generator versions (minor/patch)
 fern generator upgrade --include-major       # also take majors (runs migrations)
 fern upgrade                                 # bump CLI version in fern.config.json

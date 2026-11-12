@@ -45,7 +45,7 @@ Remote vs local: remote generation (default) runs on Fern's infrastructure and h
 | Symptom | Cause / fix |
 | --- | --- |
 | `Please run fern login` / 401 in CI | No `FERN_TOKEN` in env. Create with `fern token`, store as a secret. Or use `--local`; with no account, `--guest`. |
-| `--guest can only download generated code` | A target publishes to GitHub or a registry. Add `--preview`, or claim the session (claim link / `fern claim`) and publish from the SDK's dashboard card, or log in and generate again. |
+| `--guest can only download generated code` | A target publishes to GitHub or a registry, so nothing was built. Re-run with `--preview` (or point the target at local files) so the guest build succeeds; then claim the session (claim link / `fern claim`) and publish from the SDK's dashboard card, or log in and generate again. |
 | `--guest cannot be combined with FERN_TOKEN` / a saved login | Unset `FERN_TOKEN` or run `fern logout`, or drop `--guest` and use the account. |
 | `Cannot connect to the Docker daemon` with `--local` | Docker isn't running / not available on the runner. Start Docker, or use remote generation. |
 | `Unable to find image fernapi/...:x.y.z` | Version doesn't exist; check the changelog. Private registry → set `image.registry`. |
