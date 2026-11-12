@@ -6,11 +6,12 @@ Install: `npm install -g fern-api` (pins to `fern.config.json` at runtime: the C
 
 ```bash
 fern check [--warnings]                 # validate specs + generators.yml; run before every generate
-fern generate                           # default-group, remote generation (needs fern login / FERN_TOKEN)
+fern generate                           # default-group, remote generation (needs fern login / FERN_TOKEN, or --guest)
 fern generate --group <g> [--api <a>]   # a specific group / API
 fern generate --group <g> --version 1.2.3   # set package version + release tag
 fern generate --group <g> --preview     # no publish; writes to fern/.preview/<generator-name>/
 fern generate --group <g> --local       # run generator Docker images locally (no login)
+fern generate --guest                   # no Fern account: temporary guest session, prints a claim link
 fern generate --group <g> --local --preview --force   # fully offline-ish dry run, no prompts
 fern generate --group <g> --local --package [--package-mode host|docker]   # artifacts in fern-dist/
 fern generate --group <g> --local --package-only   # package, then delete everything except fern-dist/ (and .fernignore'd paths)
@@ -43,7 +44,9 @@ Remote vs local: remote generation (default) runs on Fern's infrastructure and h
 
 | Symptom | Cause / fix |
 | --- | --- |
-| `Please run fern login` / 401 in CI | No `FERN_TOKEN` in env. Create with `fern token`, store as a secret. Or use `--local`. |
+| `Please run fern login` / 401 in CI | No `FERN_TOKEN` in env. Create with `fern token`, store as a secret. Or use `--local`; with no account, `--guest`. |
+| `--guest can only download generated code` | A target publishes to GitHub or a registry, so nothing was built. Re-run with `--preview` (or point the target at local files) so the guest build succeeds; then claim the session (claim link / `fern claim`) and publish from the SDK's dashboard card, or log in and generate again. |
+| `--guest cannot be combined with FERN_TOKEN` / a saved login | Unset `FERN_TOKEN` or run `fern logout`, or drop `--guest` and use the account. |
 | `Cannot connect to the Docker daemon` with `--local` | Docker isn't running / not available on the runner. Start Docker, or use remote generation. |
 | `Unable to find image fernapi/...:x.y.z` | Version doesn't exist; check the changelog. Private registry → set `image.registry`. |
 | Push to GitHub fails / "repository not found" | Fern GitHub App not installed on the SDK repo, or `github.repository` typo. |

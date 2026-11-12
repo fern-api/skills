@@ -1,6 +1,6 @@
 # Publishing SDKs
 
-Fern generates code remotely by default (`fern generate`, requires `fern login` or `FERN_TOKEN`) and then does one or both of: push source to GitHub, publish a package to a registry. Both are configured per generator entry.
+Fern generates code remotely by default (`fern generate`, requires `fern login` or `FERN_TOKEN`) and then does one or both of: push source to GitHub, publish a package to a registry. Both are configured per generator entry. Without an account, `fern generate --guest` builds download-only targets; publishing starts after the session is claimed, from the SDK's card in the Fern Dashboard (Publish to GitHub) or by logging in and generating again.
 
 ## GitHub (`github`)
 
