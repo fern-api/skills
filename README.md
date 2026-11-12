@@ -47,7 +47,7 @@ Requires Node 18+. Skills are plain Markdown, so you can also copy a
 | Skill | Use for |
 |-------|---------|
 | `fern-docs` | Building Fern docs sites: publishing an OpenAPI spec as a docs site (with or without a Fern account), `docs.yml`, navigation, pages, custom MDX, landing pages, changelog entries, and access control (authentication & RBAC). |
-| `fern-sdks` | Generating and publishing SDKs: `fern.config.json`, `generators.yml` (groups, generators, outputs, GitHub modes), auth schemes and environments, `.fernignore` custom code, `fern generate` / `fern check` / `fern generator upgrade`, registry publishing, troubleshooting generated code. |
+| `fern-sdks` | Generating and publishing SDKs (with or without a Fern account): `fern.config.json`, `generators.yml` (groups, generators, outputs, GitHub modes), auth schemes and environments, `.fernignore` custom code, `fern generate` / `fern check` / `fern generator upgrade`, registry publishing, troubleshooting generated code. |
 | `fern-spec` | Making OpenAPI/AsyncAPI specs Fern-friendly: `operationId`/schema hygiene, `x-fern-*` extensions (method names, pagination, examples, audiences, global headers, SDK variables), overlays vs overrides, auth and servers, spec sync. |
 | `fern-workflows` | Running Fern in CI/CD: `fern check` on PRs, docs preview links and publishing, SDK release workflows and publishing modes, OpenAPI spec sync, `FERN_TOKEN`/registry secrets, runner-only failures. |
 

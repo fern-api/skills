@@ -4,9 +4,11 @@ description: >-
   Configure and generate Fern SDKs: generators.yml (groups, generators,
   outputs, GitHub publishing modes), fern.config.json, auth schemes,
   environments, .fernignore and Replay for custom code, fern generate /
-  generator upgrade / --local / --preview / --package, and common generation
-  failures. Use when working in a Fern SDK repo (a fern/ directory with
-  generators.yml). Routes to a detailed reference per task.
+  generator upgrade / --local / --preview / --package, --guest when there is
+  no Fern account, and common generation failures. Use when asked to generate
+  an SDK from an OpenAPI spec with Fern, with or without a Fern account, or
+  when working in a Fern SDK repo (a fern/ directory with generators.yml).
+  Routes to a detailed reference per task.
 ---
 
 # Fern SDKs
@@ -43,10 +45,11 @@ Load only the reference you need.
 2. Read the existing `generators.yml` and reuse its conventions (group names, output style, existing `config` keys) before adding new ones. Prefer changing an existing group over adding a parallel one.
 3. Never invent configuration. Confirm every `config` key against the language page or the `generators.yml` reference; unknown keys fail generation. If a key only exists in a newer generator, bump `version` in the same change.
 4. Generator versions are pinned per generator (`version: 3.x.y`) and the CLI version is pinned in `fern.config.json`. Upgrade with `fern generator upgrade` / `fern upgrade` rather than editing numbers by hand, unless the user asks for a specific version.
-5. Validate without publishing: `fern generate --group <g> --preview` (remote, needs `fern login` or `FERN_TOKEN`) or `fern generate --group <g> --local --preview` (Docker, no login). Output lands in `fern/.preview/<generator>/`.
+5. Validate without publishing: `fern generate --group <g> --preview` (remote, needs `fern login`, `FERN_TOKEN` or `--guest`) or `fern generate --group <g> --local --preview` (Docker, no login). Output lands in `fern/.preview/<generator>/`.
 6. Custom code goes in files listed in `.fernignore` (whole-file) or is preserved by Replay (line-level, `pull-request` mode). Don't edit generated files in a `release`/`push` repo and expect the edit to survive.
 7. Don't put real tokens in `generators.yml`; use `${ENV_VAR}` references and GitHub/CI secrets.
-8. Changes to the SDK's public surface (method names, request wrappers, error types) are usually spec-side (`operationId`, `x-fern-sdk-method-name`, `x-fern-request-name`, `error-responses`) — hand off to `fern-spec` for those.
+8. No Fern account: run `fern generate --guest`. It generates on a temporary guest session and writes the SDK to its output path; a target that publishes to GitHub or a registry makes the run fail, so add `--preview` or point that target at local files. Hand the printed `Claim it to keep this work` link to the user and stop there: after the claim the SDK appears on the organization's SDKs page in the Fern Dashboard, where it is downloaded, published to GitHub or given a Fern repository that regenerates it. Don't ask the user to log in, create a repository or supply registry tokens first. `--guest` refuses to run with `FERN_TOKEN` or a saved login.
+9. Changes to the SDK's public surface (method names, request wrappers, error types) are usually spec-side (`operationId`, `x-fern-sdk-method-name`, `x-fern-request-name`, `error-responses`) — hand off to `fern-spec` for those.
 
 ## Quick reference
 
@@ -81,6 +84,7 @@ fern check                                   # validate api + generators.yml
 fern generate --group ts-sdk --preview       # dry run into fern/.preview/
 fern generate --group ts-sdk --version 1.2.0 # publish / open PR with that version
 fern generate --group ts-sdk --local         # run generator in Docker, no Fern login
+fern generate --guest                        # no Fern account: guest build + claim link
 fern generator upgrade                       # bump generator versions (minor/patch)
 fern generator upgrade --include-major       # also take majors (runs migrations)
 fern upgrade                                 # bump CLI version in fern.config.json
