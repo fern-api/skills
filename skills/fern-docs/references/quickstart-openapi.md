@@ -67,6 +67,16 @@ Official walkthrough: https://buildwithfern.com/learn/docs/getting-started/quick
      a real organization; an unclaimed guest site disappears when the session
      expires.
 
+## After a guest publish, step by step
+
+What the user sees once the agent has reported the drop site and the claim link (the agent's work ends at step 5 above):
+
+1. The drop site is live without an account; a banner says it is unclaimed and when it expires.
+2. The claim link opens a docs-specific claim page: create a new organization or move the site into one the user administers, and pick the Docs URL (`<slug>.docs.buildwithfern.com`).
+3. The claim lands on `/<org>/docs`, where the site is listed as "Publishing" until the move finishes, then shows as Live on its overview.
+4. The overview offers Connect GitHub: a new repository (GitHub's form opens prefilled, then the dashboard asks to share it with the Fern GitHub App when the installation is "Only select repositories") or an existing one. The dialog reads "Connecting your repository", then "Your docs are on GitHub".
+5. The repository opens on `main` with `fern/` (the uploaded project), `.github/workflows` (publish on merge) and a README; edits become pull requests, and merging publishes the site.
+
 ## Fixing the common failures
 
 | Output | What to do |

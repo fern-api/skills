@@ -51,6 +51,18 @@ Load only the reference you need.
 8. No Fern account: run `fern generate --guest`. It generates on a temporary guest session and writes the SDK to its output path; a target that publishes to GitHub or a registry makes the run fail, so add `--preview` or point that target at local files. Hand the printed `Claim it to keep this work` link to the user and stop there: after the claim the SDK appears on the organization's SDKs page in the Fern Dashboard, where it is downloaded, published to GitHub or given a Fern repository that regenerates it. Don't ask the user to log in, create a repository or supply registry tokens first. `--guest` refuses to run with `FERN_TOKEN` or a saved login.
 9. Changes to the SDK's public surface (method names, request wrappers, error types) are usually spec-side (`operationId`, `x-fern-sdk-method-name`, `x-fern-request-name`, `error-responses`) — hand off to `fern-spec` for those.
 
+## No account, step by step
+
+What a request like "I have this OpenAPI spec and I need an SDK for it using Fern, can you do this for me" turns into when there is no Fern login. The agent does steps 1–3 and stops; the user does the rest in the browser.
+
+1. **Agent:** `fern init --openapi <spec>` when there is no `fern/` folder yet; otherwise read the existing `generators.yml`. Run `fern check`.
+2. **Agent:** `fern generate --guest` (add `--preview` when the group publishes to GitHub or a registry). The CLI opens a temporary guest session, generates the SDK and writes it to the group's output path (`fern/.preview/<generator>/` with `--preview`). The SDK keeps the names from `fern.config.json`, not the guest organization.
+3. **Agent:** report, verbatim from the output: the `Claim it to keep this work` link (the fragment after `#` is the secret, so don't log it elsewhere), the build-page link (public, kept 7 days) and the output path. Stop here: no login, no repository, no registry tokens.
+4. **User:** the build page lists the generated SDKs with a Download button and a "Claim this session" action.
+5. **User:** the claim page (SDK-specific) creates a new organization or picks one they administer, and names the SDK. The claim lands on `/<org>/sdks`, where the SDK has its own card with the build, Download and Publish to GitHub.
+6. **User:** Publish to GitHub → a new repository (GitHub's form opens prefilled; the dashboard then asks to share the repository with the Fern GitHub App when the installation is "Only select repositories") or an existing one. The row reads "Publishing to owner/repo…", then "Pushed to owner/repo".
+7. **Result:** the repository opens on `main` with two commits, "Initial commit" and "SDK regeneration", both by `fern-api[bot]`. "Set up Fern repository" on the card then commits `fern/`, a regenerate workflow and a README, so a spec change regenerates the SDK from CI.
+
 ## Quick reference
 
 Minimal `fern/generators.yml` for an OpenAPI-based TypeScript SDK published to npm from a GitHub repo:

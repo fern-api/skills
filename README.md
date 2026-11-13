@@ -70,6 +70,8 @@ Once installed, your agent reads each skill's description and uses it when the
 task matches — nothing else to configure. For example:
 
 - "I have an OpenAPI spec, build docs for me using Fern" → `fern-docs`
+- "I have this OpenAPI spec at `./api-specs/openapi.yml` and I need to create a docs website for it using Fern, can you do this for me?" → `fern-docs` (no account needed: it publishes a guest site and hands back the claim link)
+- "I have this OpenAPI spec `@openapi.yml` and I need to generate an SDK for it using Fern, can you do this for me?" → `fern-sdks` (no account needed: `fern generate --guest` and the claim link)
 - "Add a changelog entry for the new webhooks endpoint" → `fern-docs`
 - "Publish our Python SDK to PyPI as `acme-sdk`" → `fern-sdks`
 - "The SDK method is called `postV1Users`, make it `users.create`" → `fern-spec`
