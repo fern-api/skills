@@ -46,7 +46,7 @@ Official walkthrough: https://buildwithfern.com/learn/docs/getting-started/quick
 
    `--guest` starts a temporary guest session (or reuses the one recorded in
    `fern/.guest-session`), ignores the `organization` in `fern.config.json` and
-   the `instances` URL in `docs.yml`, and publishes to a `drop-<id>.docs…` host.
+   the `instances` URL in `docs.yml`, and publishes to a `temp-<id>.docs…` host.
    It needs no `--preview`, no `--no-prompt`, and must not be combined with
    `FERN_TOKEN` or a saved login (the CLI refuses).
 
@@ -59,7 +59,7 @@ Official walkthrough: https://buildwithfern.com/learn/docs/getting-started/quick
    have checked the `instances` URL is the one they want to replace.
 
 5. **Report back** with, verbatim from the command output:
-   - the published site URL (`https://drop-<id>.docs.buildwithfern.com` for a
+   - the published site URL (`https://temp-<id>.docs.buildwithfern.com` for a
      guest, the `<org>-preview-<id>…` URL for an account), and for an account
      the production command above
    - for a guest: the **claim link** and the session's expiry. Claiming the
